@@ -1,87 +1,240 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#f6f5f0" />
-    <meta name="description" content="Protótipo acadêmico de e-commerce da Vectra Sport." />
-    <title>Vectra Sport | Movimento em primeiro lugar</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
-    <script src="app.js" defer></script>
-  </head>
-  <body>
-    <div class="announcement">FRETE GRÁTIS A PARTIR DE R$ 299 <span>•</span> 10% OFF NA PRIMEIRA COMPRA: VECTRA10</div>
-    <header class="site-header">
-      <a class="wordmark" href="#inicio" aria-label="Vectra Sport, início">VECTRA<span>SPORT</span></a>
-      <nav class="main-nav" aria-label="Navegação principal">
-        <a href="#colecao" data-filter="Todos">Novidades</a>
-        <a href="#colecao" data-filter="Corrida">Corrida</a>
-        <a href="#colecao" data-filter="Treino">Treino</a>
-        <a href="#colecao" data-filter="Lifestyle">Lifestyle</a>
-      </nav>
-      <div class="header-actions">
-        <label class="search-box"><span class="sr-only">Buscar produtos</span><input id="searchInput" type="search" placeholder="Buscar peça ou esporte" /><span aria-hidden="true">⌕</span></label>
-        <button class="icon-button admin-link" id="adminButton" aria-label="Abrir painel administrativo" title="Painel administrativo">▤</button>
-        <button class="icon-button cart-trigger" id="cartButton" aria-label="Abrir carrinho">♧<span id="cartCount" class="cart-count">0</span></button>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f6f5f0" />
+  <meta name="description" content="Protótipo acadêmico de e-commerce da Vectra Sport." />
+  <title>Vectra Sport | Movimento em primeiro lugar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="app.js" defer></script>
+</head>
+
+<body>
+  <div class="announcement">FRETE GRÁTIS A PARTIR DE R$ 299 <span>•</span> 10% OFF NA PRIMEIRA COMPRA: VECTRA10</div>
+  <header class="site-header">
+    <a class="wordmark" href="#inicio" aria-label="Vectra Sport, início">VECTRA<span>SPORT</span></a>
+    <nav class="main-nav" aria-label="Navegação principal">
+      <a href="#colecao" data-filter="Todos">Novidades</a>
+      <a href="#colecao" data-filter="Corrida">Corrida</a>
+      <a href="#colecao" data-filter="Treino">Treino</a>
+      <a href="#colecao" data-filter="Lifestyle">Lifestyle</a>
+    </nav>
+    <div class="header-actions">
+      <label class="search-box"><span class="sr-only">Buscar produtos</span><input id="searchInput" type="search"
+          placeholder="Buscar peça ou esporte" /><span aria-hidden="true">⌕</span></label>
+      <button class="icon-button admin-link" id="adminButton" aria-label="Abrir painel administrativo"
+        title="Painel administrativo">▤</button>
+      <button class="icon-button cart-trigger" id="cartButton" aria-label="Abrir carrinho">♧<span id="cartCount"
+          class="cart-count">0</span></button>
+    </div>
+  </header>
+
+  <main id="storeView">
+    <section class="hero" id="inicio">
+      <div class="hero-copy">
+        <p class="eyebrow">VECTRA SPORT / COLEÇÃO 2026</p>
+        <h1>Seu ritmo.<br /><em>Seu espaço.</em></h1>
+        <p class="hero-intro">Equipamento feito para acompanhar cada versão de você. Do primeiro quilômetro ao último
+          round.</p>
+        <a class="button button-light" href="#colecao">Explorar coleção <span aria-hidden="true">↗</span></a>
       </div>
-    </header>
+      <div class="hero-caption"><span>01 — 04</span><span>FEITO PARA O MOVIMENTO</span></div>
+    </section>
 
-    <main id="storeView">
-      <section class="hero" id="inicio">
-        <div class="hero-copy">
-          <p class="eyebrow">VECTRA SPORT / COLEÇÃO 2026</p>
-          <h1>Seu ritmo.<br /><em>Seu espaço.</em></h1>
-          <p class="hero-intro">Equipamento feito para acompanhar cada versão de você. Do primeiro quilômetro ao último round.</p>
-          <a class="button button-light" href="#colecao">Explorar coleção <span aria-hidden="true">↗</span></a>
+    <section class="sports-strip" aria-label="Comprar por modalidade">
+      <p>ENCONTRE SEU<br />MOVIMENTO</p>
+      <button class="sport-chip active" data-filter="Todos"><span>✳</span> Tudo</button>
+      <button class="sport-chip" data-filter="Corrida"><span>↗</span> Corrida</button>
+      <button class="sport-chip" data-filter="Treino"><span>◒</span> Treino</button>
+      <button class="sport-chip" data-filter="Yoga"><span>◌</span> Yoga</button>
+      <button class="sport-chip" data-filter="Lifestyle"><span>◉</span> Lifestyle</button>
+    </section>
+
+    <section class="collection section-pad" id="colecao">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">ESCOLHAS DA SEMANA</p>
+          <h2>Prontos para <em>ir além.</em></h2>
         </div>
-        <div class="hero-caption"><span>01 — 04</span><span>FEITO PARA O MOVIMENTO</span></div>
-      </section>
+        <div class="collection-controls"><label for="sortSelect" class="sr-only">Ordenar produtos</label><select
+            id="sortSelect">
+            <option value="featured">Em destaque</option>
+            <option value="price-asc">Menor preço</option>
+            <option value="price-desc">Maior preço</option>
+          </select><span id="resultCount">0 peças</span></div>
+      </div>
+      <div class="product-grid" id="productGrid" aria-live="polite"></div>
+      <p id="emptyState" class="empty-state" hidden>Nenhuma peça encontrada. Tente outra busca ou modalidade.</p>
+    </section>
 
-      <section class="sports-strip" aria-label="Comprar por modalidade">
-        <p>ENCONTRE SEU<br />MOVIMENTO</p>
-        <button class="sport-chip active" data-filter="Todos"><span>✳</span> Tudo</button>
-        <button class="sport-chip" data-filter="Corrida"><span>↗</span> Corrida</button>
-        <button class="sport-chip" data-filter="Treino"><span>◒</span> Treino</button>
-        <button class="sport-chip" data-filter="Yoga"><span>◌</span> Yoga</button>
-        <button class="sport-chip" data-filter="Lifestyle"><span>◉</span> Lifestyle</button>
-      </section>
+    <section class="fit-guide">
+      <div class="fit-image" role="img" aria-label="Atleta se alongando antes do treino"></div>
+      <div class="fit-copy">
+        <p class="eyebrow">ESCOLHA SEM DÚVIDA</p>
+        <h2>Seu tamanho,<br /><em>seu melhor ajuste.</em></h2>
+        <p>Consulte as medidas da peça antes de comprar e encontre o caimento que acompanha seu movimento.</p><button
+          class="text-button" id="sizeGuideButton">Abrir guia de tamanhos <span>↗</span></button>
+      </div>
+    </section>
 
-      <section class="collection section-pad" id="colecao">
-        <div class="section-heading">
-          <div><p class="eyebrow">ESCOLHAS DA SEMANA</p><h2>Prontos para <em>ir além.</em></h2></div>
-          <div class="collection-controls"><label for="sortSelect" class="sr-only">Ordenar produtos</label><select id="sortSelect"><option value="featured">Em destaque</option><option value="price-asc">Menor preço</option><option value="price-desc">Maior preço</option></select><span id="resultCount">0 peças</span></div>
+    <section class="promise-row" aria-label="Benefícios da Vectra Sport">
+      <div><span>01</span>
+        <h3>Troca sem complicação</h3>
+        <p>Até 30 dias para encontrar o ajuste certo.</p>
+      </div>
+      <div><span>02</span>
+        <h3>Pagamento protegido</h3>
+        <p>Pix e cartão em ambiente seguro.</p>
+      </div>
+      <div><span>03</span>
+        <h3>Feito para durar</h3>
+        <p>Tecnologia que acompanha seu ritmo.</p>
+      </div>
+    </section>
+  </main>
+
+  <main id="adminView" class="admin-view" hidden>
+    <div class="admin-top">
+      <div>
+        <p class="eyebrow">VECTRA SPORT / OPERAÇÃO</p>
+        <h1>Visão geral</h1>
+      </div><button id="backToStore" class="button button-dark">← Voltar à loja</button>
+    </div>
+    <div class="admin-metrics">
+      <article><span>Pedidos hoje</span><strong>18</strong><small class="positive">↑ 12% vs. ontem</small></article>
+      <article><span>Faturamento hoje</span><strong>R$ 4.280</strong><small>12 pedidos pagos</small></article>
+      <article><span>Itens com estoque crítico</span><strong id="criticalCount">0</strong><small
+          class="warning-text">Abaixo do mínimo</small></article>
+    </div>
+    <section class="admin-section">
+      <div class="admin-section-title">
+        <div>
+          <p class="eyebrow">INVENTÁRIO</p>
+          <h2>Estoque por produto</h2>
+        </div><button class="button button-outline" id="restockButton">+ Repor demonstração</button>
+      </div>
+      <div class="inventory-table-wrap">
+        <table class="inventory-table">
+          <thead>
+            <tr>
+              <th>Produto</th>
+              <th>Modalidade</th>
+              <th>Variação</th>
+              <th>Disponível</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="inventoryRows"></tbody>
+        </table>
+      </div>
+    </section>
+    <section class="admin-section">
+      <div class="admin-section-title">
+        <div>
+          <p class="eyebrow">ÚLTIMOS MOVIMENTOS</p>
+          <h2>Pedidos recentes</h2>
         </div>
-        <div class="product-grid" id="productGrid" aria-live="polite"></div>
-        <p id="emptyState" class="empty-state" hidden>Nenhuma peça encontrada. Tente outra busca ou modalidade.</p>
-      </section>
+      </div>
+      <div class="orders-list">
+        <div><span class="order-id">#VS-2048</span><span>Conjunto Flow / M</span><span>Hoje, 10:42</span><b
+            class="status-pill paid">Pagamento aprovado</b></div>
+        <div><span class="order-id">#VS-2047</span><span>Short Pace / G</span><span>Hoje, 10:18</span><b
+            class="status-pill shipping">Em separação</b></div>
+        <div><span class="order-id">#VS-2046</span><span>Top Pulse / P</span><span>Hoje, 09:56</span><b
+            class="status-pill shipped">Enviado</b></div>
+      </div>
+    </section>
+    <p class="prototype-note">Dados demonstrativos. Este painel não altera um estoque real.</p>
+  </main>
 
-      <section class="fit-guide">
-        <div class="fit-image" role="img" aria-label="Atleta se alongando antes do treino"></div>
-        <div class="fit-copy"><p class="eyebrow">ESCOLHA SEM DÚVIDA</p><h2>Seu tamanho,<br /><em>seu melhor ajuste.</em></h2><p>Consulte as medidas da peça antes de comprar e encontre o caimento que acompanha seu movimento.</p><button class="text-button" id="sizeGuideButton">Abrir guia de tamanhos <span>↗</span></button></div>
-      </section>
+  <footer class="site-footer">
+    <div class="footer-main"><a class="wordmark" href="#inicio">VECTRA<span>SPORT</span></a>
+      <p>Movimento é para todo mundo.<br />Vista o que te move.</p>
+      <div class="footer-links"><a href="#colecao">Novidades</a><a href="#colecao">Guia de tamanhos</a><a
+          href="mailto:oi@vectrasport.com.br">Atendimento</a></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Vectra Sport. Protótipo acadêmico.</span><span>Privacidade &nbsp; · &nbsp;
+        Trocas &nbsp; · &nbsp; Entregas</span></div>
+  </footer>
 
-      <section class="promise-row" aria-label="Benefícios da Vectra Sport"><div><span>01</span><h3>Troca sem complicação</h3><p>Até 30 dias para encontrar o ajuste certo.</p></div><div><span>02</span><h3>Pagamento protegido</h3><p>Pix e cartão em ambiente seguro.</p></div><div><span>03</span><h3>Feito para durar</h3><p>Tecnologia que acompanha seu ritmo.</p></div></section>
-    </main>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Carrinho de compras" aria-hidden="true">
+    <div class="drawer-head">
+      <div>
+        <p class="eyebrow">SUA SELEÇÃO</p>
+        <h2>Carrinho <span id="drawerCount">(0)</span></h2>
+      </div><button id="closeCart" class="icon-button" aria-label="Fechar carrinho">×</button>
+    </div>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="cart-summary">
+      <div class="coupon-row"><input id="couponInput" placeholder="Cupom de desconto" /><button
+          id="applyCoupon">Aplicar</button></div>
+      <p id="couponMessage" class="coupon-message" aria-live="polite"></p>
+      <div class="subtotal"><span>Subtotal</span><strong id="cartSubtotal">R$ 0,00</strong></div><small>Frete calculado
+        na próxima etapa.</small><button id="checkoutButton" class="button button-dark full-button" disabled>Continuar
+        para entrega <span>→</span></button>
+    </div>
+  </aside>
+  <div class="scrim" id="scrim"></div>
 
-    <main id="adminView" class="admin-view" hidden>
-      <div class="admin-top"><div><p class="eyebrow">VECTRA SPORT / OPERAÇÃO</p><h1>Visão geral</h1></div><button id="backToStore" class="button button-dark">← Voltar à loja</button></div>
-      <div class="admin-metrics"><article><span>Pedidos hoje</span><strong>18</strong><small class="positive">↑ 12% vs. ontem</small></article><article><span>Faturamento hoje</span><strong>R$ 4.280</strong><small>12 pedidos pagos</small></article><article><span>Itens com estoque crítico</span><strong id="criticalCount">0</strong><small class="warning-text">Abaixo do mínimo</small></article></div>
-      <section class="admin-section"><div class="admin-section-title"><div><p class="eyebrow">INVENTÁRIO</p><h2>Estoque por produto</h2></div><button class="button button-outline" id="restockButton">+ Repor demonstração</button></div><div class="inventory-table-wrap"><table class="inventory-table"><thead><tr><th>Produto</th><th>Modalidade</th><th>Variação</th><th>Disponível</th><th>Status</th></tr></thead><tbody id="inventoryRows"></tbody></table></div></section>
-      <section class="admin-section"><div class="admin-section-title"><div><p class="eyebrow">ÚLTIMOS MOVIMENTOS</p><h2>Pedidos recentes</h2></div></div><div class="orders-list"><div><span class="order-id">#VS-2048</span><span>Conjunto Flow / M</span><span>Hoje, 10:42</span><b class="status-pill paid">Pagamento aprovado</b></div><div><span class="order-id">#VS-2047</span><span>Short Pace / G</span><span>Hoje, 10:18</span><b class="status-pill shipping">Em separação</b></div><div><span class="order-id">#VS-2046</span><span>Top Pulse / P</span><span>Hoje, 09:56</span><b class="status-pill shipped">Enviado</b></div></div></section>
-      <p class="prototype-note">Dados demonstrativos. Este painel não altera um estoque real.</p>
-    </main>
+  <dialog id="productDialog" class="product-dialog"><button class="dialog-close icon-button" data-close-dialog
+      aria-label="Fechar">×</button>
+    <div id="productDetail"></div>
+  </dialog>
+  <dialog id="sizeDialog" class="size-dialog"><button class="dialog-close icon-button" data-close-dialog
+      aria-label="Fechar">×</button>
+    <p class="eyebrow">GUIA VECTRA</p>
+    <h2>Encontre seu ajuste.</h2>
+    <p>Compare suas medidas com a tabela. Se estiver entre dois tamanhos, escolha o maior para um caimento mais solto.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Tamanho</th>
+          <th>Busto</th>
+          <th>Cintura</th>
+          <th>Quadril</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>P</td>
+          <td>82–88</td>
+          <td>64–70</td>
+          <td>90–96</td>
+        </tr>
+        <tr>
+          <td>M</td>
+          <td>89–95</td>
+          <td>71–77</td>
+          <td>97–103</td>
+        </tr>
+        <tr>
+          <td>G</td>
+          <td>96–102</td>
+          <td>78–84</td>
+          <td>104–110</td>
+        </tr>
+        <tr>
+          <td>GG</td>
+          <td>103–110</td>
+          <td>85–92</td>
+          <td>111–118</td>
+        </tr>
+      </tbody>
+    </table><small>Medidas em centímetros. Tabela demonstrativa do protótipo.</small>
+  </dialog>
+  <dialog id="checkoutDialog" class="checkout-dialog"><button class="dialog-close icon-button" data-close-dialog
+      aria-label="Fechar">×</button>
+    <div id="checkoutContent"></div>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
 
-    <footer class="site-footer"><div class="footer-main"><a class="wordmark" href="#inicio">VECTRA<span>SPORT</span></a><p>Movimento é para todo mundo.<br />Vista o que te move.</p><div class="footer-links"><a href="#colecao">Novidades</a><a href="#colecao">Guia de tamanhos</a><a href="mailto:oi@vectrasport.com.br">Atendimento</a></div></div><div class="footer-bottom"><span>© 2026 Vectra Sport. Protótipo acadêmico.</span><span>Privacidade &nbsp; · &nbsp; Trocas &nbsp; · &nbsp; Entregas</span></div></footer>
-
-    <aside class="cart-drawer" id="cartDrawer" aria-label="Carrinho de compras" aria-hidden="true"><div class="drawer-head"><div><p class="eyebrow">SUA SELEÇÃO</p><h2>Carrinho <span id="drawerCount">(0)</span></h2></div><button id="closeCart" class="icon-button" aria-label="Fechar carrinho">×</button></div><div id="cartItems" class="cart-items"></div><div class="cart-summary"><div class="coupon-row"><input id="couponInput" placeholder="Cupom de desconto" /><button id="applyCoupon">Aplicar</button></div><p id="couponMessage" class="coupon-message" aria-live="polite"></p><div class="subtotal"><span>Subtotal</span><strong id="cartSubtotal">R$ 0,00</strong></div><small>Frete calculado na próxima etapa.</small><button id="checkoutButton" class="button button-dark full-button" disabled>Continuar para entrega <span>→</span></button></div></aside>
-    <div class="scrim" id="scrim"></div>
-
-    <dialog id="productDialog" class="product-dialog"><button class="dialog-close icon-button" data-close-dialog aria-label="Fechar">×</button><div id="productDetail"></div></dialog>
-    <dialog id="sizeDialog" class="size-dialog"><button class="dialog-close icon-button" data-close-dialog aria-label="Fechar">×</button><p class="eyebrow">GUIA VECTRA</p><h2>Encontre seu ajuste.</h2><p>Compare suas medidas com a tabela. Se estiver entre dois tamanhos, escolha o maior para um caimento mais solto.</p><table><thead><tr><th>Tamanho</th><th>Busto</th><th>Cintura</th><th>Quadril</th></tr></thead><tbody><tr><td>P</td><td>82–88</td><td>64–70</td><td>90–96</td></tr><tr><td>M</td><td>89–95</td><td>71–77</td><td>97–103</td></tr><tr><td>G</td><td>96–102</td><td>78–84</td><td>104–110</td></tr><tr><td>GG</td><td>103–110</td><td>85–92</td><td>111–118</td></tr></tbody></table><small>Medidas em centímetros. Tabela demonstrativa do protótipo.</small></dialog>
-    <dialog id="checkoutDialog" class="checkout-dialog"><button class="dialog-close icon-button" data-close-dialog aria-label="Fechar">×</button><div id="checkoutContent"></div></dialog>
-    <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  </body>
 </html>
