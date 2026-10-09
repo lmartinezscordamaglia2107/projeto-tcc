@@ -43,7 +43,7 @@ Os números da pesquisa foram recebidos no roteiro do projeto. Antes da entrega,
 
 - `index.html`: estrutura e conteúdo do protótipo.
 - `styles.css`: identidade visual e comportamento responsivo.
-- `app.js`: catálogo, filtros, carrinho, checkout demonstrativo e inventário local.
+- `app.js`: catálogo, filtros, carrinho, checkout e redirecionamento à API de pagamento.
 - `server.js`: servidor local, validação do carrinho e criação de preferência Mercado Pago.
 - `.env.example`: variáveis necessárias para configurar o ambiente de teste.
 - `docs/`: texto acadêmico e fontes dos diagramas.
