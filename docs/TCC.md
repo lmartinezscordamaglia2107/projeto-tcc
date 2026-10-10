@@ -1,9 +1,9 @@
 # Especificação e prototipagem de uma plataforma web de e-commerce para a Vectra Sport
 
-**Autores:** [inserir nomes]  
-**Instituição:** [inserir instituição]  
-**Curso:** [inserir curso]  
-**Orientador(a):** [inserir nome]  
+**Autores:** LUCAS MARTINEZ SCORDAMAGLIA SANTOS
+**Instituição:** ESCOLA ESTADUAL ALEXANDRE DE GUSMÃO
+**Curso:** Desenvolvimento De Sistemas 
+**Orientador(a):** Ranieri Marinho De Souza
 **Ano:** 2026
 
 > Documento-base do TCC. Os dados de pesquisa abaixo foram transcritos do roteiro fornecido pelo autor. Completar as informações institucionais, citações, referências e evidências da pesquisa antes da entrega acadêmica.
