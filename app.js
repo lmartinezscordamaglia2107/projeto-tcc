@@ -19,6 +19,7 @@ const inventory = JSON.parse(localStorage.getItem("vectra-inventory") || "null")
 let activeSport = "Todos";
 let appliedCoupon = false;
 let toastTimeout;
+let postalCodeLookupController;
 
 function showToast(message) {
   const toast = document.querySelector("#toast");
@@ -146,7 +147,8 @@ function openCheckout() {
     <form class="checkout-form" id="checkoutForm">
       <label>Nome<input name="firstName" autocomplete="given-name" maxlength="80" required /></label><label>Sobrenome<input name="lastName" autocomplete="family-name" maxlength="80" required /></label>
       <label class="span-2">E-mail<input name="email" type="email" autocomplete="email" required /></label>
-      <label>CEP<input name="postalCode" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}-?[0-9]{3}" placeholder="00000-000" required /></label><label>Estado (UF)<input name="state" autocomplete="address-level1" pattern="[A-Za-z]{2}" maxlength="2" required /></label>
+      <label>CEP<input name="postalCode" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}-?[0-9]{3}" maxlength="9" placeholder="00000-000" required /></label><label>Estado (UF)<input name="state" autocomplete="address-level1" pattern="[A-Za-z]{2}" maxlength="2" required /></label>
+      <p class="address-lookup-status span-2" id="addressLookupStatus" role="status" aria-live="polite">Ao sair do campo CEP, consultaremos a API ViaCEP para preencher rua, cidade e UF.</p>
       <label class="span-2">Rua / avenida<input name="street" autocomplete="address-line1" maxlength="120" required /></label>
       <label>Número<input name="number" inputmode="numeric" autocomplete="address-line2" pattern="[0-9]{1,8}" required /></label><label>Cidade<input name="city" autocomplete="address-level2" maxlength="80" required /></label>
       <p class="prototype-note span-2">O frete configurado será apresentado no checkout antes do pagamento. A confirmação do pedido depende da verificação do pagamento no servidor.</p>
@@ -203,6 +205,62 @@ document.querySelector("#applyCoupon").addEventListener("click", () => {
   renderCart();
 });
 document.querySelector("#checkoutButton").addEventListener("click", openCheckout);
+document.querySelector("#checkoutContent").addEventListener("input", (event) => {
+  if (event.target.name !== "postalCode") return;
+  const form = event.target.form;
+  const postalCode = event.target.value.replace(/\D/g, "");
+  if (form.dataset.lookupPostalCode && form.dataset.lookupPostalCode !== postalCode) {
+    form.elements.street.value = "";
+    form.elements.city.value = "";
+    form.elements.state.value = "";
+    form.dataset.lookupPostalCode = "";
+  }
+  postalCodeLookupController?.abort();
+  document.querySelector("#addressLookupStatus").classList.remove("error");
+  document.querySelector("#addressLookupStatus").textContent = "Ao sair do campo CEP, consultaremos a API ViaCEP para preencher rua, cidade e UF.";
+});
+document.querySelector("#checkoutContent").addEventListener("focusout", async (event) => {
+  if (event.target.name !== "postalCode") return;
+  const postalCodeInput = event.target;
+  const postalCode = postalCodeInput.value.replace(/\D/g, "");
+  const status = document.querySelector("#addressLookupStatus");
+  if (!postalCode) return;
+  if (!/^\d{5}-?\d{3}$/.test(postalCodeInput.value.trim())) {
+    postalCodeInput.form.dataset.lookupPostalCode = "";
+    status.classList.add("error");
+    status.textContent = "Informe um CEP com 8 números ou preencha o endereço manualmente.";
+    return;
+  }
+  if (postalCodeInput.form.dataset.lookupPostalCode === postalCode) return;
+
+  postalCodeLookupController?.abort();
+  postalCodeLookupController = new AbortController();
+  const controller = postalCodeLookupController;
+  status.classList.remove("error");
+  status.textContent = "Consultando o CEP na API ViaCEP...";
+  try {
+    const response = await fetch(`https://viacep.com.br/ws/${postalCode}/json/`, { signal: controller.signal });
+    if (!response.ok) throw new Error("Não foi possível consultar o CEP agora.");
+    const address = await response.json();
+    if (controller.signal.aborted || postalCodeInput.value.replace(/\D/g, "") !== postalCode) return;
+    if (address.erro) {
+      status.classList.add("error");
+      status.textContent = "CEP não encontrado. Confira o número ou preencha o endereço manualmente.";
+      postalCodeInput.form.dataset.lookupPostalCode = postalCode;
+      return;
+    }
+    const form = postalCodeInput.form;
+    if (typeof address.logradouro === "string" && address.logradouro) form.elements.street.value = address.logradouro;
+    if (typeof address.localidade === "string" && address.localidade) form.elements.city.value = address.localidade;
+    if (typeof address.uf === "string" && /^[A-Z]{2}$/.test(address.uf)) form.elements.state.value = address.uf;
+    form.dataset.lookupPostalCode = postalCode;
+    status.textContent = "CEP localizado. Confira o endereço e informe o número.";
+  } catch (error) {
+    if (error.name === "AbortError") return;
+    status.classList.add("error");
+    status.textContent = "Não foi possível consultar o ViaCEP. Você pode preencher o endereço manualmente.";
+  }
+});
 document.querySelector("#checkoutContent").addEventListener("submit", async (event) => {
   if (event.target.id !== "checkoutForm") return;
   event.preventDefault();

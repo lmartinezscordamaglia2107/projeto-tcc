@@ -960,6 +960,17 @@ dialog::backdrop {
   line-height: 1.5;
 }
 
+.checkout-form .address-lookup-status {
+  margin: -4px 0 0;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.checkout-form .address-lookup-status.error {
+  color: #a53b2d;
+}
+
 .checkout-form {
   display: grid;
   grid-template-columns: 1fr 1fr;

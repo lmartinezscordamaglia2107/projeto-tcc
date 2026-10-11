@@ -26,11 +26,12 @@ Como prévia visual, `index.html` pode ser aberto diretamente, mas o checkout n�
 - Busca, filtros por modalidade e ordenação do catálogo.
 - Detalhe do produto, seleção de tamanho e indicação de tamanhos indisponíveis.
 - Carrinho com quantidades, remoção de itens e cupom demonstrativo `VECTRA10`.
+- Consulta de CEP pela API pública ViaCEP no checkout para preencher rua, cidade e UF; o endereço também pode ser preenchido manualmente se a consulta falhar.
 - Fluxo de checkout com redirecionamento ao Mercado Pago Checkout Pro quando configurado.
 - Painel administrativo demonstrativo com itens de estoque baixo e reposição local.
 - Persistência local de carrinho e estoque demonstrativo no navegador via `localStorage`.
 
-O Checkout Pro processa pagamento no ambiente do Mercado Pago e oferece os métodos habilitados na conta, incluindo Pix, cartão e boleto no Brasil. A integração ainda depende das credenciais de teste do lojista e não foi possível testá-la neste ambiente. O frete implementado é uma tarifa fixa configurada no servidor, não uma cotação por CEP. O projeto não mantém pedidos em banco, não valida status por webhook, não dá baixa permanente de estoque, não autentica usuários e não envia e-mails. Portanto, o retorno do provedor não deve ser tratado como confirmação final de pedido. Não use credenciais reais até implementar persistência, webhook verificado e testes.
+O checkout consulta a API pública ViaCEP (`https://viacep.com.br`) para sugerir rua, cidade e UF a partir do CEP. A consulta requer conexão com a internet; se falhar, o endereço pode ser informado manualmente. O ViaCEP não calcula frete: o valor implementado continua sendo uma tarifa fixa configurada no servidor. O Checkout Pro processa pagamento no ambiente do Mercado Pago e oferece os métodos habilitados na conta, incluindo Pix, cartão e boleto no Brasil. A integração de pagamento depende das credenciais de teste do lojista. O projeto não mantém pedidos em banco, não valida status por webhook, não dá baixa permanente de estoque, não autentica usuários e não envia e-mails. Portanto, o retorno do provedor não deve ser tratado como confirmação final de pedido. Não use credenciais reais até implementar persistência, webhook verificado e testes.
 
 ## Documentação do TCC
 
@@ -51,4 +52,4 @@ Os números da pesquisa foram recebidos no roteiro do projeto. Antes da entrega,
 
 ## Checagem
 
-Com Node.js instalado, execute `npm run check` para verificar a sintaxe do servidor e do frontend. A integração externa exige credenciais de teste e não foi executada neste ambiente, pois Node.js/npm não estão instalados.
+Com Node.js instalado, execute `npm run check` para verificar a sintaxe do servidor e do frontend. A criação de pagamentos exige credenciais de teste; a consulta pública de CEP não exige credenciais.
